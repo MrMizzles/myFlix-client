@@ -1,11 +1,13 @@
 import PropTypes from "prop-types";
-
+import Col from "react-bootstrap/Col";
 
 export const MovieView = ({ movieData, onBackClick }) => { 
     return ( 
-        <div>
+        <Row className="justify-content-md-center">
+        <Col md={8} style={{ border: "1px solid black" }}>
+        <BookView movieData >
             <div>
-                <img src={movie.ImagePath} />
+                <img src={movie.ImagePath} w-100 />
             </div>
             <div>
                 <span>Title: </span>
@@ -35,8 +37,12 @@ export const MovieView = ({ movieData, onBackClick }) => {
                 <span>Genre: </span>
                 <span>{movieData.genre}</span>
             </div>
-            <button onClick={onBackClick}>Back</button>
-        </div>
+            <button onClick={onBackClick} className="back-button" style={{ cursor: "pointer" }}>Back</button>
+        </BookView>
+        return (
+    </Col>
+  );
+    </Row>
     );
 };
 
@@ -54,3 +60,4 @@ MovieView.PropTypes = {
         }).isRequired,
         onMovieClick: PropTypes.func.isRequired
     };
+
