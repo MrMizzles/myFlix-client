@@ -1,13 +1,18 @@
 import PropTypes from "prop-types";
 import Col from "react-bootstrap/Col";
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
+import "./movie-view.scss";
 
-export const MovieView = ({ movieData, onBackClick }) => { 
+export const MovieView = ({ movieData }) => { 
+    const { movieId } = useParams();
+    
+    const movie = movieData.find((m) => m.id === movieId); 
+
     return ( 
-        <Row className="justify-content-md-center">
-        <Col md={8} style={{ border: "1px solid black" }}>
-        <BookView movieData >
+        <div>
             <div>
-                <img src={movie.ImagePath} w-100 />
+                <img className="w-100" src={movie.image} />
             </div>
             <div>
                 <span>Title: </span>
@@ -37,12 +42,10 @@ export const MovieView = ({ movieData, onBackClick }) => {
                 <span>Genre: </span>
                 <span>{movieData.genre}</span>
             </div>
-            <button onClick={onBackClick} className="back-button" style={{ cursor: "pointer" }}>Back</button>
-        </BookView>
-        return (
-    </Col>
-  );
-    </Row>
+            <Link to={`/`}> <button className="back-button">Back</button>
+        
+        </Link>  
+      </div>
     );
 };
 
