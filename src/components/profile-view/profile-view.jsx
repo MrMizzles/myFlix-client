@@ -16,7 +16,7 @@ export const ProfileView = ({ user, movies, token, updateUsername }) => {
     const favorite_movies = movies.filter((movie) => user.favorite_movies.includes(movie.id));
 
     handleShow = () => setShow(true);
-    handleClose = () => setClose(false);
+    handleClose = () => setClose(false); 
     update = () => {
 
         const data = {
