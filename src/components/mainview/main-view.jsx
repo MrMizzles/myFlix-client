@@ -68,13 +68,13 @@ export const MainView = () => {
         user={user} movies={movies} favorites={favorites} token={token} setUser={setUser}
         onLoggedOut={onLoggedOut}
       />
-      <Row>
+      <Row className="justify-content-md-content">
         <Routes>
           <Route
             path="/users"
             element={
               <>
-                {!user ? (
+                {user ? (
                   <Navigate to="/" />
                 ) : (
                   <Col md={5}>
