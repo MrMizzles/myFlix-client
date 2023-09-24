@@ -3,10 +3,10 @@ import { Form, Button, Card, Col, } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 export const SignupView = () => {
-    const [username, setUsername] = useState(null);
-    const [password, setPassword] = useState(null);
-    const [email, setEmail] = useState(null);
-    const [birthday, setBirthday] = useState(null);
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("");
+    const [birthday, setBirthday] = useState("");
 
 
     const navigate = useNavigate();
@@ -45,7 +45,7 @@ export const SignupView = () => {
                 <Card className="mx-auto my-5 bg-light">
                     <Card.Title className="mx-auto pt-4">Register</Card.Title>
                     <Card.Body>
-                        <Form className="bg-light">
+                        <Form className="bg-light" onSubmit={handleSignUp}>
                             <Form.Group controlId="formUsername" className="mb-3">
                                 <Form.Label>Username*</Form.Label>
                                 <Form.Control
@@ -96,7 +96,7 @@ export const SignupView = () => {
                                 />
                             </Form.Group>
                             <Col className="mb-3 d-flex justify-content-center pt-4">
-                                <Button variant="primary" type="submit" onClick={handleSignUp}>
+                                <Button variant="primary" type="submit">
                                     Submit
                                 </Button>
                             </Col>

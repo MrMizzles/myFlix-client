@@ -5,6 +5,7 @@ import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { SimilarMovies } from "./similar-movies/similar-movies";
 import "./movie-view.scss";
+import movieImage from '../../assets/denise-jans-9lTUAlNB87M-unsplash-2.jpg';
 
 //display movie data 
 export const MovieView = ({ movies, user, favorites, token, setUser }) => {
@@ -16,7 +17,7 @@ export const MovieView = ({ movies, user, favorites, token, setUser }) => {
         <>
             <Card className="mb-4 d-flex flex-row bg-light mt-5 align-items-center movieView_component">
                 <Col xl={5} lg={12} className="d-flex align-items-center justify-content-center mx-auto">
-                    <Card.Img src={movie.ImagePath} className="movieView_component--image p-4" alt="movie poster" style={{ minWidth: "400px" }} />
+                    <Card.Img src={movieImage} className="movieView_component--image p-4" alt="movie poster" style={{ minWidth: "400px" }} />
                 </Col>
                 <Col xl={7} lg={12}>
                     <Card.Body className="my-4 bg-light text-xs-center">

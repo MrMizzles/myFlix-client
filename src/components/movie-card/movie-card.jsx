@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Button, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import movieImage from '../../assets/gr-stocks-q8P8YoR6erg-unsplash-2.jpg';
 
 
 export const MovieCard = ({ movie, user, token, setUser }) => {
@@ -58,7 +59,7 @@ export const MovieCard = ({ movie, user, token, setUser }) => {
     return (
         <Card className="h-100 m-auto bg-light mh-90 ">
             <div className="position-relative" style={{ minHeight: "80%" }}>
-                <Card.Img className="fluid h-100" variant="top" src={movie.ImagePath} />
+                <Card.Img className="fluid h-100" variant="top" src={movieImage} />
                 <div
                     style={{ bottom: "80%", left: "75%" }}
                     className="ms-0 p-0 mw-10 position-absolute bg-transparent"

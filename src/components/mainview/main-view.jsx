@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Row, Col } from "react-bootstrap";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { ProfileView } from "../profile-view/profile-view";
 import { NavigationBar } from "../navigation-bar/navigation-bar";
-import { Row, Col } from "react-bootstrap";
 
 
 
@@ -14,8 +14,8 @@ export const MainView = () => {
   const storedUser = localStorage.getItem("user");
   const storedToken = localStorage.getItem("token");
 
-  const [user, setUser] = useState(storedUser ? JSON.parse(storedUser) : null);
-  const [token, setToken] = useState(storedToken ? storedToken : null);
+  const [user, setUser] = useState(storedUser && storedUser !== "undefined" ? JSON.parse(storedUser) : null);
+  const [token, setToken] = useState(storedToken && storedToken !== "undefined" ? storedToken : null);
   const [movies, setMovies] = useState([]);
 
 
@@ -113,7 +113,7 @@ export const MainView = () => {
                   <Col>The list is empty!</Col>
                 ) : (
                   <Col>
-                    <MovieView movies={movies} user={user} favorites={favorites} token={token} setUser={setUser} />
+                    <MovieView movies={movies} />
                   </Col>
                 )}
               </>

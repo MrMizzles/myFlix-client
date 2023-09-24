@@ -5,7 +5,7 @@ export const ProfileUpdate = ({ user, token, setUser }) => {
     const [username, setUsername] = useState(user.Username);
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState(user.Email);
-    const [birthday, setBirthday] = useState(user.Birthday);
+    const [birthday, setBirthday] = useState("");
 
     const handleUpdate = (event) => {
         event.preventDefault();
@@ -17,12 +17,11 @@ export const ProfileUpdate = ({ user, token, setUser }) => {
             Birthday: birthday,
         };
 
-        fetch(`https://moviesapionrender.onrender.com/users/${user._id}`, {
+        fetch(`https://moviesapionrender.onrender.com/users/${user.Username}`, {
             method: "PUT",
             headers: {
                 Authorization: `Bearer ${token}`,
                 "Content-Type": "application/json",
-                mode: "no-cors",
             },
             body: JSON.stringify(data),
         })
@@ -54,11 +53,11 @@ export const ProfileUpdate = ({ user, token, setUser }) => {
                         <Form.Group controlId="formUsername" className="mb-3">
                             <Form.Label>Username*</Form.Label>
                             <Form.Control
-                                type="text"
+                                type="username"
+                                value={username}
                                 minLength="5"
                                 required
                                 className="bg-light"
-                                value={username}
                                 onChange={(e) => {
                                     setUsername(e.target.value);
                                 }}
@@ -68,9 +67,9 @@ export const ProfileUpdate = ({ user, token, setUser }) => {
                             <Form.Label>Password*</Form.Label>
                             <Form.Control
                                 type="password"
+                                value={password}
                                 required
                                 className="bg-light"
-                                value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />
                         </Form.Group>
@@ -79,10 +78,10 @@ export const ProfileUpdate = ({ user, token, setUser }) => {
 
                             <Form.Control
                                 type="email"
-                                required
                                 value={email}
                                 className="bg-light"
                                 minLength="6"
+                                required
                                 onChange={(e) => {
                                     setEmail(e.target.value);
                                 }}
