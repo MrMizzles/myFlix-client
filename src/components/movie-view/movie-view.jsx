@@ -1,6 +1,6 @@
 //import prop-types module
 import PropTypes from "prop-types";
-import { Col, Row, Button, Card } from "react-bootstrap";
+import { Col, Button, Card } from "react-bootstrap";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import { SimilarMovies } from "./similar-movies/similar-movies";
@@ -26,7 +26,8 @@ export const MovieView = ({ movies, user, favorites, token, setUser }) => {
                         </div>
                         <Card.Text>{movie.Description}</Card.Text>
                         <Card.Text>Director: {movie.Director.Name}</Card.Text>
-                        <Card.Text>{movie.Director.Bio}</Card.Text>
+                        <Card.Text>Bio: {movie.Director.Bio}</Card.Text>
+                        <Card.Text>Birthday: {movie.Director.Birth} - {movie.Director.Death}</Card.Text>
                         <Card.Text>Genre: {movie.Genre.Name}</Card.Text>
                         <Card.Text>{movie.Genre.Description}</Card.Text>
                     </Card.Body>

@@ -7,12 +7,12 @@ import movieImage from '../../assets/gr-stocks-q8P8YoR6erg-unsplash-2.jpg';
 
 
 export const MovieCard = ({ movie, user, token, setUser }) => {
-    const [isFavorite, setFavorite] = useState(user.Favorites);
+    const [isFavorite, setFavorite] = useState(user?.Favorites);
 
 
     const addToFavorites = () => {
         fetch(
-            `https://moviesapionrender.onrender.com/users/${user._id}/movies/${movie._id}`,
+            `https://moviesapionrender.onrender.com/users/${user.Username}/movies/${movie._id}`,
             {
                 method: "POST",
                 headers: {
@@ -36,7 +36,7 @@ export const MovieCard = ({ movie, user, token, setUser }) => {
 
     const deleteFromFavorites = () => {
         fetch(
-            `https://moviesapionrender.onrender.com/users/${user._id}/movies/${movie._id}`,
+            `https://moviesapionrender.onrender.com/users/${user.Username}/movies/${movie._id}`,
             {
                 method: "DELETE",
                 headers: {

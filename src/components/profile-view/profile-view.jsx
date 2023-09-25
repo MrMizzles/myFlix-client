@@ -2,7 +2,7 @@ import { ProfileInformation } from "./profile-info/profile-info"
 import { ProfileUpdate } from "./profile-update/profile-update";
 import { FavoriteMovies } from "./favorite-movies/favorite-movies";
 import { useEffect } from "react";
-import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import { useParams } from "react-router";
 
 export const ProfileView = ({
@@ -21,7 +21,7 @@ export const ProfileView = ({
         if (!user) {
             return;
         }
-        fetch(`https://moviesapionrender.onrender.com/users/${user._id}`, {
+        fetch(`https://moviesapionrender.onrender.com/users/${user.Username}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 "Content-Type": "application/json"

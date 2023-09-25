@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Card, Col, Form } from "react-bootstrap";
+import { Button, Card } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
 
 export const ProfileInformation = ({ user, token, onLoggedOut }) => {
@@ -10,7 +10,7 @@ export const ProfileInformation = ({ user, token, onLoggedOut }) => {
 
     const handleDelete = () => {
         fetch(
-            `https://moviesapionrender.onrender.com/users/${user._id}`,
+            `https://moviesapionrender.onrender.com/users/${user.Username}`,
             {
                 method: "DELETE",
                 headers: {
