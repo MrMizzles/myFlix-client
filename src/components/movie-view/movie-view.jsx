@@ -1,63 +1,44 @@
+//import prop-types module
 import PropTypes from "prop-types";
-import Col from "react-bootstrap/Col";
+import { Col, Button, Card } from "react-bootstrap";
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
+import { SimilarMovies } from "./similar-movies/similar-movies";
+import "./movie-view.scss";
+import movieImage from '../../assets/denise-jans-9lTUAlNB87M-unsplash-2.jpg';
 
-export const MovieView = ({ movieData, onBackClick }) => { 
-    return ( 
-        <Row className="justify-content-md-center">
-        <Col md={8} style={{ border: "1px solid black" }}>
-        <BookView movieData >
-            <div>
-                <img src={movie.ImagePath} w-100 />
-            </div>
-            <div>
-                <span>Title: </span>
-                <span>{movie.Title}</span>
-            </div>
-            <div>
-                <span>Year: </span>
-                <span>{movie.Year}</span>
-            </div> 
-            <div>
-                <span>Genre: </span>
-                <span>{movie.Genre.Name}</span>
-            </div> 
-            <div>
-                <span>Description: </span>
-                <span>{movie.Description}</span>
-            </div>
-            <div>
-                <span>Director: </span>
-                <span>{movie.Director.Name}</span> 
-            </div>
-            <div>
-                <span>Featured: </span>
-                <span>{movie.Featured}</span>
-            </div> 
-            <div>
-                <span>Genre: </span>
-                <span>{movieData.genre}</span>
-            </div>
-            <button onClick={onBackClick} className="back-button" style={{ cursor: "pointer" }}>Back</button>
-        </BookView>
-        return (
-    </Col>
-  );
-    </Row>
+//display movie data 
+export const MovieView = ({ movies, user, favorites, token, setUser }) => {
+    //returning /movies/:title object through useParams
+    const { title } = useParams();
+    const movie = movies.find((movie) => movie.Title === title);
+
+    return (
+        <>
+            <Card className="mb-4 d-flex flex-row bg-light mt-5 align-items-center movieView_component">
+                <Col xl={5} lg={12} className="d-flex align-items-center justify-content-center mx-auto">
+                    <Card.Img src={movieImage} className="movieView_component--image p-4" alt="movie poster" style={{ minWidth: "400px" }} />
+                </Col>
+                <Col xl={7} lg={12}>
+                    <Card.Body className="my-4 bg-light text-xs-center">
+                        <div className="d-flex align-items-center justify-content-center">
+                            <Card.Title className="mb-4 font-weight-bold mx-auto">{movie.Title}</Card.Title>
+                        </div>
+                        <Card.Text>{movie.Description}</Card.Text>
+                        <Card.Text>Director: {movie.Director.Name}</Card.Text>
+                        <Card.Text>Bio: {movie.Director.Bio}</Card.Text>
+                        <Card.Text>Birthday: {movie.Director.Birth} - {movie.Director.Death}</Card.Text>
+                        <Card.Text>Genre: {movie.Genre.Name}</Card.Text>
+                        <Card.Text>{movie.Genre.Description}</Card.Text>
+                    </Card.Body>
+                    <Card.Footer className="mt-4 bg-light d-flex justify-content-center">
+                        <Link to={'/'} className="mt-4">
+                            <Button className="mb-3">Back</Button>
+                        </Link>
+                    </Card.Footer>
+                </Col>
+            </Card>
+            <SimilarMovies movie={movie} movies={movies} user={user} favorites={favorites} token={token} setUser={setUser} />
+        </>
     );
 };
-
-MovieView.PropTypes = {
-    movie: PropTypes.shape({
-        Title: PropTypes.string.isRequired,
-        ImagePathh: PropTypes.string.isRequired,
-        Year: PropTypes.string,
-        Description: PropTypes.string,
-           Director: PropTypes.string,
-           Genre: PropTypes.shape({
-             Name: PropTypes.string,
-             Description: PropTypes.string
-        })
-        }).isRequired,
-        onMovieClick: PropTypes.func.isRequired
-    };
-
