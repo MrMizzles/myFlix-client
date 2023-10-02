@@ -16,7 +16,7 @@ export const NavigationBar = ({
         <Navbar expand="lg" className="bg-body-tertiary">
             <Container fluid>
                 <Navbar.Brand as={Link} to="/">
-                    80s Flix
+                    80s Flixs
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarScroll" />
                 <Navbar.Collapse id="navbarScroll">

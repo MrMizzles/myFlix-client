@@ -6,6 +6,7 @@ import { MovieView } from "../movie-view/movie-view";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { ProfileView } from "../profile-view/profile-view";
+import { MovieSearch } from '../movie-search/movie-search';
 import { NavigationBar } from "../navigation-bar/navigation-bar";
 
 
@@ -17,6 +18,17 @@ export const MainView = () => {
   const [user, setUser] = useState(storedUser && storedUser !== "undefined" ? JSON.parse(storedUser) : null);
   const [token, setToken] = useState(storedToken && storedToken !== "undefined" ? storedToken : null);
   const [movies, setMovies] = useState([]);
+
+  const handleSearch = (searchTerm) => {
+    // Filter the movies based on the search term
+    const filteredMovies = movies.filter((movie) =>
+      movie.Title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    // Update the movies state with the filtered results
+    setMovies(filteredMovies);
+  };
+
 
 
   useEffect(() => {
@@ -132,6 +144,11 @@ export const MainView = () => {
                   <Col>The list is empty!</Col>
                 ) : (
                   <>
+                    <Row>
+                      <Col>
+                        <MovieSearch onSearch={handleSearch} />
+                      </Col>
+                    </Row>
                     {movies.map((movie) => (
                       <Col xs={12} s={8} md={4} className="mb-5" key={movie._id}>
                         <MovieCard
